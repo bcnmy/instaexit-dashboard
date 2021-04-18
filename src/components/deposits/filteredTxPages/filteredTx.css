@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.tx-heading {
+  margin: 10vh 60px 0;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-size: 50px;
+}
+
+.filtered-tx-list {
+  margin: 2vh 50px;
+}

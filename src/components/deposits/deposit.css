@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.deposit-tx-wrapper {
+  margin: 2vh 2vw;
+}
+
+.deposit-heading {
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-size: 50px;
+}
+
+.deposit-tx-list {
+  text-align: center;
+}
+
+.deposit-tx-card {
+  text-align: left;
+  padding: 20px 50px 10px;
+  margin-top: 10px;
+}
+
+.tx-hash {
+  overflow: auto;
+  color: #000;
+  text-overflow: ellipsis;
+}
+
+.tx-heading-card {
+  text-align: left;
+  padding: 3px 50px;
+}
+
+.tx-details {
+  color: #000;
+}
+
+.pagination-bar {
+  margin: 0 50%;
+}
+
+.filter-tx-card {
+  text-align: left;
+  padding: 10px 50px;
+}
+.tx-count-text {
+  padding: 20px 0 0;
+}

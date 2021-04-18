@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AppBar from "./components/appbar/appbar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import Deposits from "./components/deposits/deposits";
+import NotFound from "./components/NotFound/not_found";
+import AddressFilteredPage from "./components/deposits/filteredTxPages/addressFilteredPage";
+import TxFilteredPage from "./components/deposits/filteredTxPages/txFilteredPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <AppBar />
+        <Switch>
+          <Route exact path="/">
+            <Redirect
+              to={{
+                pathname: "/deposits/1",
+              }}
+            />
+          </Route>
+          <Route exact path="/deposits/:pageId">
+            <Deposits />
+          </Route>
+          <Route exact path="/deposits/address/:address">
+            <AddressFilteredPage />
+          </Route>{" "}
+          <Route exact path="/deposits/tx/:tx">
+            <TxFilteredPage />
+          </Route>
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     </div>
   );
 }
