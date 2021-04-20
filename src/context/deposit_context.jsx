@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { makeRequest } from "../helper/subgraphQuery";
+import makeRequest from "../helper/subgraphQuery";
 export const DepositContext = createContext();
 
 const DepositContextProvider = (props) => {

@@ -11,4 +11,4 @@ const makeRequest = async (request) => {
   return result.data.data;
 };
 
-module.exports = { makeRequest };
+export default makeRequest;

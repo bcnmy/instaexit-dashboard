@@ -41,35 +41,39 @@ const AssetTransfers = () => {
       console.log("Entered text isn't a address or tx.");
     }
   };
-  return (
-    <div className="asset-transfer-tx-wrapper">
-      <div className="asset-transfer-tx-heading">Asset Transfers</div>
-      <FilterTx txCount={assetTransferTxsList.length} filterTx={filterData} />
+  if (isLoading) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <div className="asset-transfer-tx-wrapper">
+        <div className="asset-transfer-tx-heading">Asset Transfers</div>
+        <FilterTx txCount={assetTransferTxsList.length} filterTx={filterData} />
 
-      <Card className="tx-heading-card">
-        <Row>
-          <Col xs={6} className="tx-details-heading">
-            Transaction Hash
-          </Col>
-          <Col xs={4} className="tx-details-heading">
-            From
-          </Col>
-          <Col xs={1} className="tx-details-heading">
-            Reciever
-          </Col>
-          <Col xs={1} className="tx-details-heading">
-            Token
-          </Col>
-        </Row>
-      </Card>
-      {assetTransferTxsList}
-      <br />
-      <PaginationBar
-        pageId={parseInt(pageId)}
-        assetTransferTxs={assetTransferTxs}
-      />
-    </div>
-  );
+        <Card className="tx-heading-card">
+          <Row>
+            <Col xs={6} className="tx-details-heading">
+              Transaction Hash
+            </Col>
+            <Col xs={4} className="tx-details-heading">
+              From
+            </Col>
+            <Col xs={1} className="tx-details-heading">
+              Reciever
+            </Col>
+            <Col xs={1} className="tx-details-heading">
+              Token
+            </Col>
+          </Row>
+        </Card>
+        {assetTransferTxsList}
+        <br />
+        <PaginationBar
+          pageId={parseInt(pageId)}
+          assetTransferTxs={assetTransferTxs}
+        />
+      </div>
+    );
+  }
 };
 
 const PaginationBar = (props) => {
