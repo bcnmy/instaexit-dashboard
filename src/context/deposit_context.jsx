@@ -10,7 +10,7 @@ const DepositContextProvider = (props) => {
     const _txs = await makeRequest(
       `depositTxes(skip:${txToBeSkipped} first: 25) { id  from tokenAddress receiver toChainId amount  } `
     );
-    setDepositTxs(_txs);
+    setDepositTxs(_txs.depositTxes);
   };
 
   const getAddressFilteredTx = async (address) => {
@@ -18,14 +18,14 @@ const DepositContextProvider = (props) => {
       `depositTxes(where:{ from: "${address}",
                 }) { id  from tokenAddress receiver toChainId amount  } `
     );
-    return _txs;
+    return _txs.depositTxes;
   };
   const getTxHashFilteredTx = async (txHash, page) => {
     const _txs = await makeRequest(
       `depositTxes(where:{ id: "${txHash}",
                 }) { id  from tokenAddress receiver toChainId amount  } `
     );
-    return _txs;
+    return _txs.depositTxes;
   };
 
   return (

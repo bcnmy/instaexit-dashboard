@@ -8,8 +8,11 @@ import {
 } from "react-router-dom";
 import Deposits from "./components/deposits/deposits";
 import NotFound from "./components/NotFound/not_found";
-import AddressFilteredPage from "./components/deposits/filteredTxPages/addressFilteredPage";
-import TxFilteredPage from "./components/deposits/filteredTxPages/txFilteredPage";
+import AddressFilteredDepositPage from "./components/deposits/filteredTxPages/addressFilteredPage";
+import TxFilteredDepositPage from "./components/deposits/filteredTxPages/txFilteredPage";
+import AssetTransfers from "./components/assetTransfers/assetTransfers";
+import AssetTransfersTxFilteredPage from "./components/assetTransfers/filteredTxPages/txFilteredPage";
+import AssetTransfersAddressFilteredPage from "./components/assetTransfers/filteredTxPages/addressFilteredPage";
 
 function App() {
   return (
@@ -28,10 +31,19 @@ function App() {
             <Deposits />
           </Route>
           <Route exact path="/deposits/address/:address">
-            <AddressFilteredPage />
-          </Route>{" "}
+            <AddressFilteredDepositPage />
+          </Route>
           <Route exact path="/deposits/tx/:tx">
-            <TxFilteredPage />
+            <TxFilteredDepositPage />
+          </Route>
+          <Route exact path="/asset-transfers/:pageId">
+            <AssetTransfers />
+          </Route>
+          <Route exact path="/asset-transfers/address/:address">
+            <AssetTransfersAddressFilteredPage />
+          </Route>
+          <Route exact path="/asset-transfers/tx/:tx">
+            <AssetTransfersTxFilteredPage />
           </Route>
           <Route component={NotFound} />
         </Switch>

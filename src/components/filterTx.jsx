@@ -7,7 +7,7 @@ import {
   Row,
   Button,
 } from "react-bootstrap-v5";
-import "./deposit.css";
+import "./deposits/deposit.css";
 import { useHistory } from "react-router-dom";
 
 const FilterTx = (props) => {
@@ -25,15 +25,7 @@ const FilterTx = (props) => {
     }
   };
 
-  const filterData = async () => {
-    if (txOrAddress.length === addressLength) {
-      history.push(`/deposits/address/${txOrAddress}`);
-    } else if (txOrAddress.length === txHashLength) {
-      history.push(`/deposits/tx/${txOrAddress}`);
-    } else {
-      console.log("Entered text isn't a address or tx.");
-    }
-  };
+  //
   const setText = async (event) => {
     setTxOrAddress(event.target.value);
   };
@@ -50,7 +42,11 @@ const FilterTx = (props) => {
               aria-describedby="basic-addon2"
               onChange={setText}
             />
-            <Button variant="dark" onClick={filterData}>
+            <Button
+              variant="dark"
+              onClick={() => {
+                props.filterTx(txOrAddress);
+              }}>
               Search
             </Button>
           </InputGroup>

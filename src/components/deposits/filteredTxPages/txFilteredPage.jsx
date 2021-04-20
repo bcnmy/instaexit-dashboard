@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { DepositContext } from "../../../context/deposit_context";
 import DepositTxCard from "../depositTxCard";
 import "./filteredTx.css";
-const TxFilteredPage = () => {
+const DepositTxFilteredPage = () => {
   const [txs, setTxs] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const { tx } = useParams();
@@ -38,4 +38,4 @@ const TxFilteredPage = () => {
   }
 };
 
-export default TxFilteredPage;
+export default DepositTxFilteredPage;

@@ -17,7 +17,7 @@ const AppBar = () => {
           <Link to="/deposits/1" className="nav-link">
             Deposits
           </Link>
-          <Link to="/asset-transfers" className="nav-link">
+          <Link to="/asset-transfers/1" className="nav-link">
             Asset Transfers
           </Link>
           <Link to="/liquidity" className="nav-link">

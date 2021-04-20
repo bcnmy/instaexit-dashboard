@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.asset-transfer-tx-wrapper {
+  text-align: left;
+  margin: 2vh 2vw;
+}
+.asset-transfer-tx-heading {
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-size: 50px;
+}
+.asset-tx-card {
+  padding: 20px 50px 10px;
+}
+.asset-tx-details {
+  color: #000;
+}

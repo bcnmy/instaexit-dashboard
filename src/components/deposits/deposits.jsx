@@ -7,18 +7,21 @@ import {
   Row,
   Spinner,
 } from "react-bootstrap-v5";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { DepositContext } from "../../context/deposit_context";
 import { Link } from "react-router-dom";
-
 import DepositTxCard from "./depositTxCard";
 import "./deposit.css";
-import FilterTx from "./filterTx";
+import FilterTx from "./../filterTx";
+
 const Deposits = () => {
   const { getDepositTransactions, depositTxs } = useContext(DepositContext);
   const [isLoading, setLoading] = useState(true);
   const { pageId } = useParams();
+  const history = useHistory();
 
+  const addressLength = 42;
+  const txHashLength = 66;
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -32,13 +35,23 @@ const Deposits = () => {
     return <DepositTxCard tx={depositTx} key={index} />;
   });
 
+  const filterData = async (txOrAddress) => {
+    if (txOrAddress.length === addressLength) {
+      history.push(`/deposits/address/${txOrAddress}`);
+    } else if (txOrAddress.length === txHashLength) {
+      history.push(`/deposits/tx/${txOrAddress}`);
+    } else {
+      console.log("Entered text isn't a address or tx.");
+    }
+  };
+
   if (isLoading) {
     return <Spinner animation="border" />;
   } else {
     return (
       <div className="deposit-tx-wrapper">
         <h2 className="deposit-heading">Deposits</h2>
-        <FilterTx txCount={depositTxsList.length} />
+        <FilterTx txCount={depositTxsList.length} filterTx={filterData} />
         <Card className="tx-heading-card">
           <Row>
             <Col xs={3} className="tx-details-heading">
