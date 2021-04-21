@@ -9,26 +9,26 @@ const AssetTransferContextProvider = (props) => {
     console.log("DATA");
     const txToBeSkipped = (parseInt(page) - 1) * 25;
     const _txs = await makeRequest(
-      `assetSentTxes(skip:${txToBeSkipped} first: 25) { id asset amount target  } `
+      `assetSentEvents(skip:${txToBeSkipped} first: 25) { id asset amount target  } `
     );
     console.log(_txs.assetSentTxes);
-    setAssetTransferTxs(_txs.assetSentTxes);
+    setAssetTransferTxs(_txs.assetSentEvents);
   };
 
   const getAddressFilteredTx = async (address) => {
     const _txs = await makeRequest(
-      `assetSentTxes(where:{ target: "${address}",
+      `assetSentEvents(where:{ target: "${address}",
                 }) { id asset amount target }`
     );
-    return _txs.assetSentTxes;
+    return _txs.assetSentEvents;
   };
 
   const getTxHashFilteredTx = async (txHash) => {
     const _txs = await makeRequest(
-      `assetSentTxes(where:{ id: "${txHash}",
+      `assetSentEvents(where:{ id: "${txHash}",
                 }) { id asset amount target  }`
     );
-    return _txs.assetSentTxes;
+    return _txs.assetSentEvents;
   };
 
   return (

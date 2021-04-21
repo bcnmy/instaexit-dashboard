@@ -8,24 +8,24 @@ const DepositContextProvider = (props) => {
   const getDepositTransactions = async (page) => {
     const txToBeSkipped = (parseInt(page) - 1) * 25;
     const _txs = await makeRequest(
-      `depositTxes(skip:${txToBeSkipped} first: 25) { id  from tokenAddress receiver toChainId amount  } `
+      `depositEvents(skip:${txToBeSkipped} first: 25) { id  from tokenAddress receiver toChainId amount  } `
     );
-    setDepositTxs(_txs.depositTxes);
+    setDepositTxs(_txs.depositEvents);
   };
 
   const getAddressFilteredTx = async (address) => {
     const _txs = await makeRequest(
-      `depositTxes(where:{ from: "${address}",
+      `depositEvents(where:{ from: "${address}",
                 }) { id  from tokenAddress receiver toChainId amount  } `
     );
-    return _txs.depositTxes;
+    return _txs.depositEvents;
   };
   const getTxHashFilteredTx = async (txHash, page) => {
     const _txs = await makeRequest(
-      `depositTxes(where:{ id: "${txHash}",
+      `depositEvents(where:{ id: "${txHash}",
                 }) { id  from tokenAddress receiver toChainId amount  } `
     );
-    return _txs.depositTxes;
+    return _txs.depositEvents;
   };
 
   return (
