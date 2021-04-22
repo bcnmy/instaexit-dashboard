@@ -65,7 +65,9 @@ const AssetTransfers = () => {
             </Col>
           </Row>
         </Card>
-        {assetTransferTxsList}
+        {assetTransferTxsList.length > 0
+          ? assetTransferTxsList
+          : "No txs Found"}
         <br />
         <PaginationBar
           pageId={parseInt(pageId)}

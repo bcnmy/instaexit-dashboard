@@ -6,12 +6,10 @@ const AssetTransferContextProvider = (props) => {
   const [assetTransferTxs, setAssetTransferTxs] = useState([]);
 
   const getAssetTransferTransactions = async (page) => {
-    console.log("DATA");
     const txToBeSkipped = (parseInt(page) - 1) * 25;
     const _txs = await makeRequest(
       `assetSentEvents(skip:${txToBeSkipped} first: 25) { id asset amount target  } `
     );
-    console.log(_txs.assetSentTxes);
     setAssetTransferTxs(_txs.assetSentEvents);
   };
 

@@ -7,9 +7,7 @@ const AppBar = () => {
   return (
     <Navbar className="appbar">
       <Navbar.Brand>
-        <Link>
-          <img src={biconomyLogo} height="50vh" alt="Biconomy Logo" />
-        </Link>
+        <img src={biconomyLogo} height="50vh" alt="Biconomy Logo" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

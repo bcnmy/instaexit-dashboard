@@ -22,17 +22,24 @@ const AssetTransferTxFilteredPage = () => {
   const assetTransferTxsList = txs.map((assetTransferTx, index) => {
     return <AssetTxCard tx={assetTransferTx} key={index} />;
   });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <div>
+        <h3 className="tx-heading">
+          Asset Transfers
+          <h5>{"Transaction: " + tx}</h5>
+        </h3>
 
-  return (
-    <div>
-      <h3 className="tx-heading">
-        Asset Transfers
-        <h5>{"Transaction: " + tx}</h5>
-      </h3>
-
-      <div className="filtered-tx-list">{assetTransferTxsList}</div>
-    </div>
-  );
+        <div className="filtered-tx-list">
+          {assetTransferTxsList.length > 0
+            ? assetTransferTxsList
+            : "No txs Found"}
+        </div>
+      </div>
+    );
+  }
 };
 
 export default AssetTransferTxFilteredPage;

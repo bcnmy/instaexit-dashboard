@@ -34,7 +34,11 @@ const AssetTransferAddressFilteredPage = () => {
           <h5>{"Address: " + address}</h5>
         </h3>
 
-        <div className="filtered-tx-list">{assetTransferTxsList}</div>
+        <div className="filtered-tx-list">
+          {assetTransferTxsList.length > 0
+            ? assetTransferTxsList
+            : "No txs Found"}
+        </div>
       </div>
     );
   }
