@@ -26,7 +26,7 @@ const AssetTransfers = () => {
       setLoading(false);
     };
     getData();
-  }, [pageId]);
+  }, [pageId, selectedNetwork]);
 
   const assetTransferTxsList = assetTransferTxs.map(
     (assetTransferTx, index) => {

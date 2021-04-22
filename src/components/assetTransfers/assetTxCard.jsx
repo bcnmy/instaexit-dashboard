@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Row, Col } from "react-bootstrap-v5";
+import { NetworkContext } from "../../context/network_context";
 import chainDetails from "../chainDetails";
 import tokenDetails from "../tokenDetails";
 import "./assetTransfer.css";
 
 const AssetTxCard = (props) => {
+  const { tokenDetails, selectedNetwork, getBaseExplorerURL } = useContext(
+    NetworkContext
+  );
   return (
     <Card className="asset-tx-card">
       {" "}
@@ -12,14 +16,17 @@ const AssetTxCard = (props) => {
         <Col xs={6}>
           <a
             className="asset-tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/tx/${props.tx.id}`}>
+            href={getBaseExplorerURL(selectedNetwork) + `/tx/${props.tx.id}`}>
             {props.tx.id}
           </a>
         </Col>
         <Col xs={4}>
           <a
             className="asset-tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/address/${props.tx.target}`}>
+            href={
+              getBaseExplorerURL(selectedNetwork) +
+              `/address/${props.tx.target}`
+            }>
             {props.tx.target}
           </a>
         </Col>
@@ -30,7 +37,9 @@ const AssetTxCard = (props) => {
         <Col xs={1}>
           <a
             className="asset-tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/address/${props.tx.asset}`}>
+            href={
+              getBaseExplorerURL(selectedNetwork) + `/address/${props.tx.asset}`
+            }>
             {tokenDetails[props.tx.asset]["tokenName"]}
           </a>
         </Col>{" "}

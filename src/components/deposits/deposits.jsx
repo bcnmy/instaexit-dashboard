@@ -25,6 +25,7 @@ const Deposits = () => {
 
   const addressLength = 42;
   const txHashLength = 66;
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -32,7 +33,7 @@ const Deposits = () => {
       setLoading(false);
     };
     getData();
-  }, [pageId]);
+  }, [pageId, selectedNetwork]);
 
   const depositTxsList = depositTxs.map((depositTx, index) => {
     return <DepositTxCard tx={depositTx} key={index} />;

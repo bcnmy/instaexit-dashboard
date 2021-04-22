@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Row, Col } from "react-bootstrap-v5";
+import { NetworkContext } from "../../context/network_context";
 import chainDetails from "../chainDetails";
-import tokenDetails from "../tokenDetails";
 const DepositTxCard = (props) => {
+  const { tokenDetails, selectedNetwork, getBaseExplorerURL } = useContext(
+    NetworkContext
+  );
+
   return (
     <Card className="deposit-tx-card">
       <Row>
         <Col xs={3}>
           <a
             className="tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/tx/${props.tx.id}`}>
+            href={getBaseExplorerURL(selectedNetwork) + `/tx/${props.tx.id}`}>
             {props.tx.id.substring(0, parseInt(props.tx.id.length) / 2) + "..."}
           </a>
         </Col>
         <Col xs={3}>
           <a
             className="tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/address/${props.tx.from}`}>
+            href={
+              getBaseExplorerURL(selectedNetwork) + `/address/${props.tx.from}`
+            }>
             {props.tx.from.substring(0, parseInt(props.tx.from.length) / 2) +
               "..."}
           </a>
@@ -24,7 +30,10 @@ const DepositTxCard = (props) => {
         <Col xs={3}>
           <a
             className="tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/address/${props.tx.receiver}`}>
+            href={
+              getBaseExplorerURL(selectedNetwork) +
+              `/address/${props.tx.receiver}`
+            }>
             {props.tx.receiver.substring(
               0,
               parseInt(props.tx.receiver.length) / 2
@@ -34,7 +43,10 @@ const DepositTxCard = (props) => {
         <Col xs={1}>
           <a
             className="tx-details"
-            href={`https://explorer-mumbai.maticvigil.com/address/${props.tx.tokenAddress}`}>
+            href={
+              getBaseExplorerURL(selectedNetwork) +
+              `/address/${props.tx.tokenAddress}`
+            }>
             {tokenDetails[props.tx.tokenAddress]["tokenName"]}
           </a>
         </Col>
