@@ -5,11 +5,13 @@ import AssetTxCard from "./assetTxCard";
 import "./assetTransfer.css";
 import { Button, Card, Col, Pagination, Row } from "react-bootstrap-v5";
 import FilterTx from "../filterTx";
+import { NetworkContext } from "../../context/network_context";
 
 const AssetTransfers = () => {
   const { getAssetTransferTransactions, assetTransferTxs } = useContext(
     AssetTransferContext
   );
+  const { selectedNetwork } = useContext(NetworkContext);
   const [isLoading, setLoading] = useState(true);
   const { pageId } = useParams();
   const history = useHistory();
@@ -20,7 +22,7 @@ const AssetTransfers = () => {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      await getAssetTransferTransactions(pageId);
+      await getAssetTransferTransactions(pageId, selectedNetwork);
       setLoading(false);
     };
     getData();
@@ -33,6 +35,7 @@ const AssetTransfers = () => {
   );
 
   const filterData = async (txOrAddress) => {
+    console.log("FILTERING");
     if (txOrAddress.length === addressLength) {
       history.push(`/asset-transfers/address/${txOrAddress}`);
     } else if (txOrAddress.length === txHashLength) {

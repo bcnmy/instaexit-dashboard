@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AssetTransferContext } from "../../../context/asset_transfer_context";
+import { NetworkContext } from "../../../context/network_context";
 import AssetTxCard from "../assetTxCard";
+
 const AssetTransferAddressFilteredPage = () => {
   const [txs, setTxs] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const { address } = useParams();
   const { getAddressFilteredTx } = useContext(AssetTransferContext);
+  const { selectedNetwork } = useContext(NetworkContext);
 
   useEffect(() => {
     const getTx = async () => {
       setLoading(true);
-      const _txs = await getAddressFilteredTx(address);
+      const _txs = await getAddressFilteredTx(address, selectedNetwork);
       setTxs(_txs);
       setLoading(false);
     };

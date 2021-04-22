@@ -2,9 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap-v5";
 import { useParams } from "react-router-dom";
 import { DepositContext } from "../../../context/deposit_context";
+import { NetworkContext } from "../../../context/network_context";
 import DepositTxCard from "../depositTxCard";
+
 import "./filteredTx.css";
 const DepositAddressFilteredPage = () => {
+  const { selectedNetwork } = useContext(NetworkContext);
   const [txs, setTxs] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const { address } = useParams();
@@ -12,7 +15,7 @@ const DepositAddressFilteredPage = () => {
   useEffect(() => {
     const getTx = async () => {
       setLoading(true);
-      const _txs = await getAddressFilteredTx(address);
+      const _txs = await getAddressFilteredTx(address, selectedNetwork);
       setTxs(_txs);
       setLoading(false);
     };

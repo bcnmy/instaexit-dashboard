@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AssetTransferContext } from "../../../context/asset_transfer_context";
+import { NetworkContext } from "../../../context/network_context";
 import AssetTxCard from "../assetTxCard";
 
 const AssetTransferTxFilteredPage = () => {
@@ -8,11 +9,12 @@ const AssetTransferTxFilteredPage = () => {
   const [isLoading, setLoading] = useState(true);
   const { tx } = useParams();
   const { getTxHashFilteredTx } = useContext(AssetTransferContext);
+  const { selectedNetwork } = useContext(NetworkContext);
 
   useEffect(() => {
     const getTx = async () => {
       setLoading(true);
-      const _txs = await getTxHashFilteredTx(tx);
+      const _txs = await getTxHashFilteredTx(tx, selectedNetwork);
       setTxs(_txs);
       setLoading(false);
     };

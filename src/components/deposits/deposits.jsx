@@ -13,9 +13,12 @@ import { Link } from "react-router-dom";
 import DepositTxCard from "./depositTxCard";
 import "./deposit.css";
 import FilterTx from "./../filterTx";
+import { NetworkContext } from "../../context/network_context";
 
 const Deposits = () => {
   const { getDepositTransactions, depositTxs } = useContext(DepositContext);
+  const { selectedNetwork } = useContext(NetworkContext);
+
   const [isLoading, setLoading] = useState(true);
   const { pageId } = useParams();
   const history = useHistory();
@@ -25,7 +28,7 @@ const Deposits = () => {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      await getDepositTransactions(pageId);
+      await getDepositTransactions(pageId, selectedNetwork);
       setLoading(false);
     };
     getData();
