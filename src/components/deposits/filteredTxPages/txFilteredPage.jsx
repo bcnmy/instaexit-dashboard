@@ -31,8 +31,11 @@ const DepositTxFilteredPage = () => {
           Deposits
           <h5>{"Transaction: " + tx}</h5>
         </h3>
-
-        <div className="filtered-tx-list">{depositTxsList}</div>
+        {depositTxsList.length > 0 ? (
+          <div className="filtered-tx-list">{depositTxsList}</div>
+        ) : (
+          <div>No Tx Found</div>
+        )}{" "}
       </div>
     );
   }

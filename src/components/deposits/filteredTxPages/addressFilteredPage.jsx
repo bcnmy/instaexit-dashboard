@@ -33,7 +33,11 @@ const DepositAddressFilteredPage = () => {
           <h5>{"From: " + address}</h5>
         </h3>
 
-        <div className="filtered-tx-list">{depositTxsList}</div>
+        {depositTxsList.length > 0 ? (
+          <div className="filtered-tx-list">{depositTxsList}</div>
+        ) : (
+          <div>No Txs Found</div>
+        )}
       </div>
     );
   }
